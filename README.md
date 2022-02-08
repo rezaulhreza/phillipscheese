@@ -29,7 +29,6 @@ app/Http/Models  ----->for models
 
 ------------------
 For controllers:
-
 app/Http/Livewire
 &
 app/Http/Controllers

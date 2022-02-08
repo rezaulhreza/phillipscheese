@@ -1,3 +1,13 @@
-<div>
-    {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
-</div>
+<div>   
+    <div class="px-10 mt-5">
+      <span class="uppercase font-bold text-2xl "
+        >Contact Us</span
+      >
+    </div>
+    <p class="m-3 p-2">
+    phillips
+    02690225899  
+    kk@psrt.com
+    </p>
+    
+    </div>

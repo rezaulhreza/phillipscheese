@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-          <div class="text-2xl">Phillip's Cheese- Staff Portal</div>
+          <div class="text-2xl">Login</div>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -39,7 +39,7 @@
                     </a>
                 @endif
 
-                <x-jet-button class="ml-4">
+                <x-jet-button class="ml-4 bg-gray-600">
                     {{ __('Log in') }}
                 </x-jet-button>
             </div>

@@ -20,4 +20,5 @@ class CheeseType extends Model
     public function suppliers(){
         return $this->hasMany(SupplierOrder::class,'cheese_type_id','id');
     }
+    
 }

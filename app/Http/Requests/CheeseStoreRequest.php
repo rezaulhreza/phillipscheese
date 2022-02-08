@@ -32,6 +32,7 @@ class CheeseStoreRequest extends FormRequest
             'weight' => 'required',
             'price' => 'required',
             'stock' => 'required',
+            'image'=>'required',
             
             
         ];

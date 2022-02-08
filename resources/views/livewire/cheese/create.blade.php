@@ -1,7 +1,7 @@
 <x-app-layout>
 
 <div class="mt-5">
-    <form action="{{route('cheese.store')}}" method="post">
+    <form action="{{route('cheese.store')}}" method="post" enctype="multipart/form-data">
         @csrf
     <div class="form  mx-8">
 
@@ -31,6 +31,12 @@
                     <input wire:model="name" placeholder="Cheese Name" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"  type="text" name="name" id="name">
                     
                     @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
+                </div>
+                <div class="mb-3 space-y-2 w-full text-lg">
+                    <label class="font-semibold  text-gray-600 py-2">Upload Image<abbr title="required">*</abbr></label>
+                    <input wire:model="image" placeholder="" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"  type="file" name="image" id="image">
+                    
+                    @error('image') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
               
                 <div class="mb-3 space-y-2 w-full text-lg">

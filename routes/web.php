@@ -22,6 +22,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',HomeComponent::class);
 Route::get('/about',AboutPage::class)->name('about');
 Route::get('/cheeses/all', [CheeseController::class,'cheeseList'])->name('cheeses.cheeseList');
+
+Route::get('/cheese/detail/{id}/{name}', [CheeseController::class,'cheeseDetails'])->name('cheeses.cheeseDetails');
+
+
+Route::post('/cheeses/barclaypay', [CheeseController::class,'payWithBarclay'])->name('cheeses.payWithBarclay');
+Route::post('/cheeses/payment', [CheeseController::class,'payment'])->name('cheeses.payment');
+
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('dashboard', function () 
 {
     

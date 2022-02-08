@@ -6,6 +6,7 @@ use App\Http\Requests\CheeseStoreRequest;
 use App\Models\Cheese;
 use App\Models\CheeseType;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class CheeseController extends Controller
 {
@@ -14,7 +15,7 @@ class CheeseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public $transaction_uuid;    public function index()
     {
             $cheesetypes  = CheeseType::latest()->get();
             $cheeses=Cheese::with(['cheesetype'])->latest()->get();
@@ -26,7 +27,16 @@ class CheeseController extends Controller
             $cheeses=Cheese::with(['cheesetype'])->latest()->get();
             return view('livewire.cheeseList',compact('cheeses','cheesetypes'));
     }
-    
+
+    public function cheeseDetails($id,$name)
+    {
+        $cheesetypes = CheeseType::latest()->get();
+        $cheese = Cheese::with(['cheesetype'])->findOrFail($id);
+        $cheeses=Cheese::with(['cheesetype'])->where('cheese_type_id',$cheese->cheese_type_id)->take(5)->get();
+       
+            return view('livewire.cheese-page',compact('cheese','cheesetypes','cheeses'));
+    }
+   
     /**
      * Show the form for creating a new resource.
      *
@@ -47,6 +57,7 @@ class CheeseController extends Controller
      */
     public function store(CheeseStoreRequest $request)
     {
+        // dd($request->all());
      
         $cheese=Cheese::create([
 
@@ -59,6 +70,22 @@ class CheeseController extends Controller
 
 
        ]);
+
+       
+       if($request->file('image')){
+        // if($lot->lot_thumbnail !='thumbnail.jpg'){
+        //     unlink($lot->lot_thumbnail);
+        // }
+        $upload_location = 'upload/cheeses/';
+        $file = $request->file('image');
+        $name_gen = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+        Image::make($file)->resize(600,600)->save($upload_location.$name_gen);
+        $save_url = $upload_location.$name_gen;
+
+        $cheese->update([
+            'image' => $save_url,
+        ]);
+    }
 
        $notification = [
         'message' => 'Cheese Created Successfully!!!',
@@ -112,9 +139,25 @@ class CheeseController extends Controller
         'weight' => $request->input('weight'),
         'price' => $request->input('price'),
         'stock' => $request->input('stock'),
+        
 
 
        ]);
+
+       if($request->file('image')){
+        // if($lot->lot_thumbnail !='thumbnail.jpg'){
+        //     unlink($lot->lot_thumbnail);
+        // }
+        $upload_location = 'upload/cheeses/';
+        $file = $request->file('image');
+        $name_gen = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+        Image::make($file)->resize(600,600)->save($upload_location.$name_gen);
+        $save_url = $upload_location.$name_gen;
+
+        $cheese->update([
+            'image' => $save_url,
+        ]);
+    }
 
        $notification = [
         'message' => 'Cheese Updated Successfully!!!',
@@ -142,4 +185,18 @@ class CheeseController extends Controller
         ];
         return redirect()->route('cheese.index')->with($notification);
     }
+
+
+
+
+
+     
+    public function payWithBarclay(){
+        return view('livewire.order.HPPAuth');
+    }
+
+    public function payment(){
+        return view('livewire.order.HPPAuth2');
+    }
+    
 }

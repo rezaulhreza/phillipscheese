@@ -28,13 +28,21 @@
         
         
       
-            <a href="{{route('cheese.create')}}">Create</a>
-          
+        @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+
+    @endif
+   
+        
+      
+            <a href="{{route('cheese.create')}}" class="btn bg-green-400 text-white font-bold">Create</a>
         
           <table class="table table-bordered mt-5 mx-auto py-6 px-8">
               <thead>
                   <tr>
-                      
+                      <th>Image</th>
                       <th>Cheese Name</th>
                       <th>Cheese Price</th>
                       <th>Cheese Weight</th>
@@ -48,7 +56,10 @@
         
   
                   <tr>
+                      <td>
+                        <img src="{{ asset($cheese->image) }}" alt=""  style="width: 70px; height:70px;">
                       
+                      </td>
                       <td>{{ $cheese->name }}</td>
                       <td>£ {{ $cheese->price }}</td>
                       <td>{{ $cheese->weight }}</td>
