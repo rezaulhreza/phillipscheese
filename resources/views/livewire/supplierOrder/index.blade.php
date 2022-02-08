@@ -25,10 +25,16 @@
   
      
       
-        
+        @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+
+    @endif
+   
         
       
-            <a href="{{route('supplierOrder.create')}}">Create</a>
+            <a href="{{route('supplierOrder.create')}}" class="btn bg-green-400 text-white font-bold">Create</a>
           
         
           <table class="table table-bordered mt-5 mx-auto py-6 px-8">
