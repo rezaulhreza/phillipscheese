@@ -15,7 +15,8 @@ class CheeseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public $transaction_uuid;    public function index()
+   
+    public function index()
     {
             $cheesetypes  = CheeseType::latest()->get();
             $cheeses=Cheese::with(['cheesetype'])->latest()->get();

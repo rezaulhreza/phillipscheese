@@ -10,7 +10,7 @@
             <div class="row text-lg">
                 <div class="col-span-6 sm:col-span-4">
                     <label class="block text-sm font-medium text-gray-700">Cheese Type</label>
-                    <select id="vehiccheese_type_idle_id" name="cheese_type_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" @change="changeCategory">
+                    <select id="vehiccheese_type_id" name="cheese_type_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" @change="changeCategory">
                       <option value="">-- Select Cheese Type --</option>
                       @foreach ($cheesetypes as $cheesetype)
                       <option value="{{ $cheesetype->id }}" data-val="{{ $cheesetype->id }}">{{ $cheesetype->type }}</option>

@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Cheese;
+use App\Models\CheeseType;
 use Livewire\Component;
 
 class AdminDashboardPage extends Component
 {
     public function render()
     {
-        return view('livewire.admin-dashboard-page');
+        $cheeseCount=Cheese::all()->count();
+        $cheeseType=CheeseType::all()->count();
+        return view('livewire.admin-dashboard-page',compact('cheeseCount','cheeseType'));
     }
 }

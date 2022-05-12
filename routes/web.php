@@ -5,6 +5,7 @@ use App\Http\Controllers\CheeseType;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\SupplierOrderController;
 use App\Http\Livewire\AboutPage;
+use App\Http\Livewire\AdminDashboardPage;
 use App\Http\Livewire\HomeComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -31,14 +32,10 @@ Route::post('/cheeses/payment', [CheeseController::class,'payment'])->name('chee
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('dashboard', function () 
-{
-    
-    return view('dashboard');
-})->name('dashboard');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-   
+    Route::get('/dashboard',AdminDashboardPage::class)->name('dashboard');
     Route::resource('/admin/cheesetype', CheeseType::class);
     Route::resource('/admin/cheese', CheeseController::class);
     Route::resource('/admin/supplierOrder', SupplierOrderController::class);
