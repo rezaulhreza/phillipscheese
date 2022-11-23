@@ -1,6 +1,5 @@
 In your root folder, clone the project file using git clone
-Open terminal (bash/cmd). Then go to project folder using command
-cd Laravel-Advance-Ecommerce
+Open terminal (bash/cmd). Then go to project folder
 Then install required files and libraries using
 composer install
 Then create a .env file and generate key for this project using command
